@@ -1,29 +1,70 @@
 
+#root {
+  height: 100%;
+}
+* {
+  margin: 0;
+}
+.app {
+  padding-bottom: 70px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Nav bar */
 .navbar {
-  padding: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  background-color: white;
+  color: black;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
-  
+  padding: 10px 20px;
 }
-.navbar h1 {
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.username {
+  padding: 8px;
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: white;
   color: black;
-  font-size: 20px;
-  margin-right: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.navbar .links {
-  margin-left: auto;
+
+.dropdown button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
 }
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
-  color: #333;
+
+.dropdown button:hover {
+  color: red;
 }
-.navbar a:hover {
-  color: #f1356d;
-}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -56,6 +97,21 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Dashboard*/
+
+.dashboard-options {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 25px;
+  align-items: center;
+  height: 20%;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  margin-right: 50px;
+  background-color: rgb(196, 191, 191);
 }
 
 

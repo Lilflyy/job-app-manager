@@ -1,37 +1,33 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../supabaseConfig/supabase";
 import Layout from "../components/Layout";
-
+import { useAuth } from "../Provider/userContexProvider";
 const DashBoard = () => {
-  const [user, setUser] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { user, isLoading, logout } = useAuth();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-
-      if (error) {
-        console.error("Error fetching user:", error.message);
-        setUser(null);
-      } else {
-        console.log("User Data:", JSON.stringify(data, null, 2));
-        setUser(data.user);
-      }
-      setIsLoading(false);
-    };
-
-    fetchUser();
-  }, []);
 
   return (
     <Layout>
-    <div>
+    <div style={{height:"100%"}}>
       {isLoading ? (
         <p>Loading...</p>
       ) : user ? (
-        <h1>Welcome to your Dashboard, {user?.user_metadata?.display_name || "User"}!</h1>
+        <div className="dashboard-contents" style={{display:"flex", flexDirection:"row", width:"100%", gap:"10px", height:"100%"}}>
+        <div className="dashboard-left" style={{width:"70%"}}>
+        <h1>Welcome to your Dashboard {user.displayName}!</h1>
+        </div>
+        <div className="dashboard-right" style={{width:"30%", display:"flex", flexDirection:"column", alignItems: "center",
+             justifyContent:"center",
+             gap:"10px"
+             }}>
+          <div className="dashboard-options"><p>Add a Job</p></div>
+          <div className="dashboard-options"><p>Add Job via links</p></div>
+          <div className="dashboard-options"><p>Delete jobs</p></div>
+        </div>
+        </div>
+        
       ) : (
-        <p>Please Log in / Sign up first</p>
+        <p> <a href='#/'>Please Log in / Sign up first </a></p>
+
+
       )}
     </div>
     </Layout>
