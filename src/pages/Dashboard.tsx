@@ -9,6 +9,7 @@ const DashBoard = () => {
   const { user, isLoading, logout } = useAuth();
   const [jobs, setJobs] = useState<Job[]>([])
   const [jobLoading, setJobLoading] = useState<boolean>(true)
+  const [deleteMode, setDeleteMode] = useState<boolean>(false)
   const [webState, setWebState] = useState("DISPLAY")
   const fetchJobs = async () => {
     setJobLoading(true)
@@ -30,7 +31,7 @@ const DashBoard = () => {
 
   const getDashboardLeft = () => {
     switch(webState) {
-      case 'DISPLAY': return <DisplayJobs jobs = {jobs}/>
+      case 'DISPLAY': return <DisplayJobs jobs = {jobs} setJobs={setJobs} deleteMode = {deleteMode} setDeleteMode={setDeleteMode}/>
       case 'INSERT': return <InsertJob jobs = {jobs} setJobs={setJobs}/>
     } 
   }
@@ -51,10 +52,14 @@ const DashBoard = () => {
              justifyContent:"center",
              gap:"10px"
              }}>
-          <div className="dashboard-options" onClick={()=>{setWebState('DISPLAY')}}><p>Display Job Applications</p></div>
+          <div className="dashboard-options" onClick={()=>{
+            setDeleteMode(false)
+            setWebState('DISPLAY')}}><p>Display Job Applications</p></div>
           <div className="dashboard-options" onClick={()=>{setWebState('INSERT')}}><p>Add a Job</p></div>
           <div className="dashboard-options"><p>Add Job via links</p></div>
-          <div className="dashboard-options"><p>Delete jobs</p></div>
+          <div className="dashboard-options" onClick={() =>{
+            
+            setDeleteMode(true)}}><p>Delete jobs</p></div>
         </div>
         </div>
         
