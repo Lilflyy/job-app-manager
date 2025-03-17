@@ -64,11 +64,10 @@ const Login = () => {
   );
 };
 
-// 💡 Inline styles (you can replace with CSS modules or Tailwind)
 export const formStyles = {
   container: {
     maxWidth: "400px",
-    margin: "50px auto",
+    margin: "50px 20px",
     padding: "20px",
     border: "1px solid #ddd",
     borderRadius: "8px",

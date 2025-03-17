@@ -2,6 +2,7 @@
 #root {
   height: 100%;
 }
+
 * {
   margin: 0;
 }
@@ -24,7 +25,9 @@ html, body {
   border-bottom: 1px solid #f2f2f2;
   padding: 10px 20px;
 }
-
+.navbar h1 {
+  font-size: 40px;
+}
 .nav-right {
   display: flex;
   align-items: center;
@@ -112,6 +115,13 @@ button:focus-visible {
   border: 1px solid transparent;
   margin-right: 50px;
   background-color: rgb(196, 191, 191);
+  cursor: pointer;
+}
+
+.dashboard-options:hover {
+  background-color: #e6f7ff; /* Light blue hover effect */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
 /* Jobs displaying */
@@ -119,9 +129,11 @@ button:focus-visible {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
+  
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
+  width: 70%;
 }
 
 .job-item {
@@ -149,5 +161,64 @@ button:focus-visible {
   font-size: 14px;
   color: #666;
 }
+
+.page-item{
+  
+  padding: 10px 15px;
+  cursor: pointer;
+  height:20px;
+  width: 15px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.page-item:hover {
+  background-color: #e8eae9;
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* INSERT job */
+.insert-job-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.insertForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.insertForm input, select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
 
 

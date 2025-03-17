@@ -4,10 +4,12 @@ import Layout from "../components/Layout";
 import { useAuth } from "../Provider/userContexProvider";
 import { Job } from "../components/DisplayJobs";
 import { supabase } from "../supabaseConfig/supabase";
+import InsertJob from "../components/InsertJob";
 const DashBoard = () => {
   const { user, isLoading, logout } = useAuth();
   const [jobs, setJobs] = useState<Job[]>([])
   const [jobLoading, setJobLoading] = useState<boolean>(true)
+  const [webState, setWebState] = useState("DISPLAY")
   const fetchJobs = async () => {
     setJobLoading(true)
     const { data, error } = await supabase
@@ -26,6 +28,13 @@ const DashBoard = () => {
     fetchJobs()
   }, [])
 
+  const getDashboardLeft = () => {
+    switch(webState) {
+      case 'DISPLAY': return <DisplayJobs jobs = {jobs}/>
+      case 'INSERT': return <InsertJob jobs = {jobs} setJobs={setJobs}/>
+    } 
+  }
+
   return (
     <Layout>
     <div style={{height:"100%"}}>
@@ -35,13 +44,15 @@ const DashBoard = () => {
         <div className="dashboard-contents" style={{display:"flex", flexDirection:"row", width:"100%", gap:"10px", height:"100%"}}>
         <div className="dashboard-left" style={{width:"70%"}}>
         <h1>Welcome to your Dashboard {user.displayName}!</h1>
-        <DisplayJobs jobs={jobs}/>
+
+        {getDashboardLeft()}
         </div>
         <div className="dashboard-right" style={{width:"30%", display:"flex", flexDirection:"column", alignItems: "center",
              justifyContent:"center",
              gap:"10px"
              }}>
-          <div className="dashboard-options"><p>Add a Job</p></div>
+          <div className="dashboard-options" onClick={()=>{setWebState('DISPLAY')}}><p>Display Job Applications</p></div>
+          <div className="dashboard-options" onClick={()=>{setWebState('INSERT')}}><p>Add a Job</p></div>
           <div className="dashboard-options"><p>Add Job via links</p></div>
           <div className="dashboard-options"><p>Delete jobs</p></div>
         </div>
