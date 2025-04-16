@@ -32,7 +32,8 @@ const DashBoard = () => {
   const getDashboardLeft = () => {
     switch(webState) {
       case 'DISPLAY': return <DisplayJobs jobs = {jobs} setJobs={setJobs} deleteMode = {deleteMode} setDeleteMode={setDeleteMode}/>
-      case 'INSERT': return <InsertJob jobs = {jobs} setJobs={setJobs}/>
+      case 'INSERT': return <InsertJob jobs = {jobs} setJobs={setJobs} useLink={false} />
+      case 'LINKS': return  <InsertJob jobs = {jobs} setJobs={setJobs} useLink={true} />
     } 
   }
 
@@ -56,7 +57,11 @@ const DashBoard = () => {
             setDeleteMode(false)
             setWebState('DISPLAY')}}><p>Display Job Applications</p></div>
           <div className="dashboard-options" onClick={()=>{setWebState('INSERT')}}><p>Add a Job</p></div>
-          <div className="dashboard-options"><p>Add Job via links</p></div>
+          <div className="dashboard-options" onClick={ () => {
+            setDeleteMode(false)
+            setWebState('LINKS')
+
+          }}><p>Add Job via links</p></div>
           <div className="dashboard-options" onClick={() =>{
             
             setDeleteMode(true)}}><p>Delete jobs</p></div>
